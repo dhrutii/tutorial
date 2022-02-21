@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+<table>
+  <th>username</th>
+  <th>email</th>
+  <tbody id='mytable'>
+  </tbody>
+</table>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+<script>
+//const firebase = require('firebase')
+const firebaseConfig = {
+  apiKey: "AIzaSyA8Afn8A9wAZ9bKNMxas3iF3lxDy_Fn1tw",
+  authDomain: "tutorial-73bbe.firebaseapp.com",
+  projectId: "tutorial-73bbe",
+  storageBucket: "tutorial-73bbe.appspot.com",
+  messagingSenderId: "688415260300",
+  appId: "1:688415260300:web:d5f7acc8e92688916c45a9",
+  measurementId: "G-PBDX7MYTQK"
+};
+
+const db = firebase.initializeApp(firebaseConfig)
+//module.exports = db
+//const collection = require('firebase/firestore')
+//const getDocs = require('firebase/firestore')
+//const getFirestore = require('firebase/firestore')
+
+const database= firebase.firestore();
+var info = [];
+function GetAllDataOnce()
+{
+    database.collection('users').get().then((querySnapshot)=>{
+      
+        querySnapshot.forEach(doc => {
+          info.push(doc.data());
+        });
+        console.log(querySnapshot);
+        console.log(info);
+    })
+}
+window.onload = GetAllDataOnce;
+
+// buildTable(info)
+// function buildTable(data){
+//   var table = document.getElementById('mytable')
+//   for (var i =0;i<data.length ; i++)
+//   {
+//    var row = `<tr>
+//              <td>${data[i].username}</td>
+//              <td>${data[i].email}</td>
+//             </tr>`
+
+//   table.innerHTML += row
+//   }
+//}
+
+
+ </script>
+ </body>
+</html>
